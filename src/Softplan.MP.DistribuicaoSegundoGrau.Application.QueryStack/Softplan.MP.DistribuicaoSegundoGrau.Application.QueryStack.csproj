@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Softplan.Common.EntityFrameworkCore.Abstractions" Version="$(SoftplanCommonsVersion)" />
+        <PackageReference Include="Softplan.Common.Repositories.EntityFrameworkCore" Version="$(SoftplanCommonsVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Softplan.MP.DistribuicaoSegundoGrau.Domain\Softplan.MP.DistribuicaoSegundoGrau.Domain.csproj" />
+        <ProjectReference Include="..\Softplan.MP.DistribuicaoSegundoGrau.Infrastructure.IoC\Softplan.MP.DistribuicaoSegundoGrau.Infrastructure.IoC.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessageAttribute">
+            <_Parameter1>csharpsquid</_Parameter1>
+            <_Parameter2>S4056</_Parameter2>
+        </AssemblyAttribute>
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessageAttribute">
+            <_Parameter1>csharpsquid</_Parameter1>
+            <_Parameter2>S4058</_Parameter2>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="Cadastros\Vagas\VagaReadModelMap.cs" />
+        <Compile Remove="Cadastros\RegrasDistribuicao\RegraDistribuicaoEspecialidade.cs" />
+        <Compile Remove="Cadastros\VinculoMembroVagas\VinculoMembroVagaSpecificationBuild.cs" />
+        <Compile Remove="Cadastros\RegrasDistribuicao\Specifications\NotAllSpecification.cs" />
+        <Compile Remove="Cadastros\Vagas\Extensions\VagaQueryBuilderExtension.cs" />
+        <Compile Remove="Cadastros\Vagas\VagaMembro.cs" />
+        <Compile Remove="MPC\**" />
+        <Compile Remove="Cadastros\Vagas\Specifications\IdAreaReadModelEqualSpecification.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="MPC\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="MPC\**" />
+    </ItemGroup>
+
+</Project>

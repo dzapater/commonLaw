@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Softplan.Common.DistributedCache.Abstractions" Version="20.3.1.62" />
+    <PackageReference Include="Softplan.Common.Graph.Client" Version="20.3.1.73-authorization-types-RC-1" />
+    <PackageReference Include="Softplan.Common.Services.Abstractions" Version="20.3.1.62" />
+  </ItemGroup>
+
+</Project>

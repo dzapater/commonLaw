@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Softplan.Common.EntityFrameworkCore.Abstractions" Version="$(SoftplanCommonsVersion)" />
+        <PackageReference Include="Softplan.Common.Repositories.EntityFrameworkCore" Version="$(SoftplanCommonsVersion)" />        
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Softplan.MP.DistribuicaoSegundoGrau.Application.QueryStack\Softplan.MP.DistribuicaoSegundoGrau.Application.QueryStack.csproj" />
+      <ProjectReference Include="..\Softplan.MP.DistribuicaoSegundoGrau.Domain\Softplan.MP.DistribuicaoSegundoGrau.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>Softplan.MP.DistribuicaoSegundoGrau.Application.CommandStack.Test</_Parameter1>
+        </AssemblyAttribute>
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessageAttribute">
+            <_Parameter1>csharpsquid</_Parameter1>
+            <_Parameter2>S4056</_Parameter2>
+        </AssemblyAttribute>
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessageAttribute">
+            <_Parameter1>csharpsquid</_Parameter1>
+            <_Parameter2>S4058</_Parameter2>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="DistributedTransactions\DistribuicaoProcessoDistributedTransaction.bpmn" />
+    </ItemGroup>
+
+</Project>

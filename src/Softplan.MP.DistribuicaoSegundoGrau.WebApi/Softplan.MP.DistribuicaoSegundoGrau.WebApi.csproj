@@ -1,0 +1,124 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Softplan.Common.AspNetCore.WebApi.Abstractions" Version="$(SoftplanCommonsVersion)" />
+        <PackageReference Include="Softplan.MP.Utils.SharedKernel" Version="21.3.4" />
+        <PackageReference Include="Softplan.SAJ.MP.AspNetCore.Abstractions" Version="$(SoftplanSajMpCommonsVersion)" />
+        <PackageReference Include="Softplan.SAJ.MP.Authorization" Version="$(SoftplanSajMpCommonsVersion)" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Content Update="appsettings.Development.json">
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Update="appsettings.json">
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Remove="ResolveEstensions\VagasResolve\**" />
+        <Content Remove="ResolveFactories\**" />
+        <Content Remove="ResolveEstensions\**" />
+        <Content Remove="ResolveExtensions\Extensions\**" />
+        <Content Remove="ResolveExtensions\Resolves\**" />
+        <Content Remove="Graph\Cadastros\Vagas\Extension\**" />
+        <Content Remove="Graph\Cadastros\VinculoMembroVagas\Extension\**" />
+        <Content Remove="Graph\Cadastros\RegrasDistribuicao\Extension\**" />
+        <Content Remove="Graph\Cadastros\VinculoVagasRegrasDistribuicao\Extension\**" />
+        <Content Update="authorizationsettings.json">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Properties\Resources.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+        <Compile Remove="Graph\Cadastros\VinculoMembroVagas\Types\VinculoMembroVagaInputType.cs" />
+        <Compile Remove="Graph\Types\MotivoCompensacaoGraphType.cs" />
+        <Compile Remove="Graph\Cadastros\VinculoMembroVagas\Types\DeleteVinculoMembroVagaGraphTtpe.cs" />
+        <Compile Remove="Extensions\ResolveExtensions.cs" />
+        <Compile Remove="ResolveFactories\Products\IResolve.cs" />
+        <Compile Remove="ResolveFactories\Products\VinculoVagaRegraDistribuicaoResolve.cs" />
+        <Compile Remove="ResolveFactories\Creators\ResolversFactory.cs" />
+        <Compile Remove="ResolveFactories\Creators\ResolveFactory.cs" />
+        <Compile Remove="ResolveEstensions\VagasResolve\**" />
+        <Compile Remove="ResolveFactories\Creators\VagaServiceFactory.cs" />
+        <Compile Remove="ResolveFactories\**" />
+        <Compile Remove="ResolveEstensions\**" />
+        <Compile Remove="ResolveExtensions\Extensions\**" />
+        <Compile Remove="ResolveExtensions\ResolveFactory.cs" />
+        <Compile Remove="ResolveExtensions\Resolves\**" />
+        <Compile Remove="Graph\Cadastros\Vagas\Extension\**" />
+        <Compile Remove="Graph\Cadastros\VinculoMembroVagas\Extension\**" />
+        <Compile Remove="Graph\Cadastros\RegrasDistribuicao\Extension\**" />
+        <Compile Remove="Graph\Cadastros\VinculoVagasRegrasDistribuicao\Extension\**" />
+        <Compile Remove="Graph\Cadastros\VinculoVagasRegrasDistribuicao\Types\IgualarCompensacaoInputType.cs" />
+        <Compile Remove="Graph\Cadastros\Vagas\Types\VagaDistribuicaoInputType.cs" />
+        <Compile Remove="Graph\Cadastros\Vagas\Types\VagaDistribuicaoGraphType.cs" />
+        <Compile Remove="Graph\Cadastros\Vagas\Types\VagaDataMembroGraphType.cs" />
+        <Compile Remove="Graph\Cadastros\VinculoVagasRegrasDistribuicao\Types\VinculoVagaGraphType.cs" />
+        <Compile Remove="Graph\Types\AreaAtuacaoGraphType.cs" />
+        <Compile Remove="Graph\Cadastros\Vagas\Types\VagaListDataMembroGraphType.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Update="Properties\Resources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Remove="ResolveEstensions\VagasResolve\**" />
+        <EmbeddedResource Remove="ResolveFactories\**" />
+        <EmbeddedResource Remove="ResolveEstensions\**" />
+        <EmbeddedResource Remove="ResolveExtensions\Extensions\**" />
+        <EmbeddedResource Remove="ResolveExtensions\Resolves\**" />
+        <EmbeddedResource Remove="Graph\Cadastros\Vagas\Extension\**" />
+        <EmbeddedResource Remove="Graph\Cadastros\VinculoMembroVagas\Extension\**" />
+        <EmbeddedResource Remove="Graph\Cadastros\RegrasDistribuicao\Extension\**" />
+        <EmbeddedResource Remove="Graph\Cadastros\VinculoVagasRegrasDistribuicao\Extension\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Softplan.MP.DistribuicaoSegundoGrau.Gateway\Softplan.MP.DistribuicaoSegundoGrau.Gateway.csproj" />
+        <ProjectReference Include="..\Softplan.MP.DistribuicaoSegundoGrau.Infrastructure.Migrations\Softplan.MP.DistribuicaoSegundoGrau.Infrastructure.Migrations.csproj" />
+        <ProjectReference Include="..\Softplan.MP.DistribuicaoSegundoGrau.Infrastructure\Softplan.MP.DistribuicaoSegundoGrau.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessageAttribute">
+            <_Parameter1>csharpsquid</_Parameter1>
+            <_Parameter2>S4056</_Parameter2>
+        </AssemblyAttribute>
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessageAttribute">
+            <_Parameter1>csharpsquid</_Parameter1>
+            <_Parameter2>S4058</_Parameter2>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="ResolveEstensions\VagasResolve\**" />
+      <None Remove="ResolveFactories\**" />
+      <None Remove="ResolveEstensions\**" />
+      <None Remove="ResolveExtensions\Extensions\**" />
+      <None Remove="ResolveExtensions\Resolves\**" />
+      <None Remove="Graph\Cadastros\Vagas\Extension\**" />
+      <None Remove="Graph\Cadastros\VinculoMembroVagas\Extension\**" />
+      <None Remove="Graph\Cadastros\RegrasDistribuicao\Extension\**" />
+      <None Remove="Graph\Cadastros\VinculoVagasRegrasDistribuicao\Extension\**" />
+    </ItemGroup>
+
+</Project>

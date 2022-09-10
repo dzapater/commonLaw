@@ -1,0 +1,9 @@
+{
+  "CountLineCode": 20,
+  "MEDIAN:CountLineCode": 5,
+  "STDEV:CountLineCode": 5,
+  "CountParams": 7,
+  "CyclomaticModified": 7,
+  "MEDIAN:CyclomaticModified": 1,
+  "STDEV:CyclomaticModified": 1
+}

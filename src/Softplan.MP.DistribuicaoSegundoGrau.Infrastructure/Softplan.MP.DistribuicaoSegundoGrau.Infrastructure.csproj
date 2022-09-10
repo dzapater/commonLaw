@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Softplan.Common.EntityFrameworkCore.Abstractions" Version="$(SoftplanCommonsVersion)" />
+        <PackageReference Include="Softplan.Common.Repositories.EntityFrameworkCore" Version="$(SoftplanCommonsVersion)" />
+        <PackageReference Include="Softplan.Common.Graph.Client" Version="$(SoftplanCommonsVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Softplan.MP.DistribuicaoSegundoGrau.Application.CommandStack\Softplan.MP.DistribuicaoSegundoGrau.Application.CommandStack.csproj" />
+        <ProjectReference Include="..\Softplan.MP.DistribuicaoSegundoGrau.Application.QueryStack\Softplan.MP.DistribuicaoSegundoGrau.Application.QueryStack.csproj" />        
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>Softplan.MP.DistribuicaoSegundoGrau.Infrastructure.Migrations</_Parameter1>
+        </AssemblyAttribute>
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessageAttribute">
+            <_Parameter1>csharpsquid</_Parameter1>
+            <_Parameter2>S4056</_Parameter2>
+        </AssemblyAttribute>
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessageAttribute">
+            <_Parameter1>csharpsquid</_Parameter1>
+            <_Parameter2>S4058</_Parameter2>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Cadastros\Repositories\Maps\MotivoMembroVagaMap.cs" />
+      <Compile Remove="Dto\**" />
+      <Compile Remove="Repositories\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Dto\**" />
+      <EmbeddedResource Remove="Repositories\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Dto\**" />
+      <None Remove="Repositories\**" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,24 @@
+﻿{
+  "authorizationTypes": [
+    {
+      "typeName": "tipo-local",
+      "authorizationIds": [
+        {
+          "idName": "COORD_PROC_INFOS_JURIDICAS",
+          "claims": [
+            "DSG_VAGA_OBTER",
+            "DSG_VAGA_LISTAR",
+            "DSG_VAGA_CRIAR",
+            "DSG_VAGA_ATUALIZAR",
+            "DSG_VAGA_DELETAR",
+            "DSG_REGRADISTIBUICAO_OBTER",
+            "DSG_REGRADISTIBUICAO_LISTAR",
+            "DSG_REGRADISTIBUICAO_CRIAR",
+            "DSG_REGRADISTIBUICAO_ATUALIZAR",
+            "DSG_REGRADISTIBUICAO_DELETAR"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+<Project>
+    <PropertyGroup Label="Сommon properties">
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Packages dependency versions">
+        <SoftplanCommonsVersion>20.3.1.73-authorization-types-RC-1</SoftplanCommonsVersion>
+        <SoftplanSajMpCommonsVersion>22.1.0-authorization-types-RC-4</SoftplanSajMpCommonsVersion>
+    </PropertyGroup>
+</Project>
+

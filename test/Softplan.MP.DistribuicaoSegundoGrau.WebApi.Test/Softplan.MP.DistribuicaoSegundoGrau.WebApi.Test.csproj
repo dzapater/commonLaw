@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Apache.NMS.ActiveMQ.NetStd" Version="1.8.0" />
+    <PackageReference Include="Bogus" Version="29.0.2" />
+    <PackageReference Include="coverlet.msbuild" Version="2.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="Refit" Version="4.6.90" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+           
+  
+  <ItemGroup>
+    <PackageReference Include="Softplan.Common.Test.AspNetCore" Version="$(SoftplanCommonsVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Softplan.MP.DistribuicaoSegundoGrau.WebApi\Softplan.MP.DistribuicaoSegundoGrau.WebApi.csproj" />    
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="GraphQL\Cadastros\VagaSchemaExtensionTest.cs" />
+    <Compile Remove="GraphQL\Cadastros\Vagas\Scenarios\IgualarDistribuicaoVagaData.cs" />
+    <Compile Remove="GraphQL\Cadastros\DataFakers\CompensacaoFaker.cs" />
+    <Compile Remove="GraphQL\Distribuicoes\DataFakers\ParametroFaker.cs" />
+    <Compile Remove="MCD\Factories\GatewayProcessos\ProcessoFactory.cs" />
+    <Compile Remove="MCD\Factories\ConsultaProcessoFactory\**" />
+    <Compile Remove="MCD\ConsultaEspecialidadeFactories\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="MCD\Factories\ConsultaProcessoFactory\**" />
+    <EmbeddedResource Remove="MCD\ConsultaEspecialidadeFactories\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="MCD\Factories\ConsultaProcessoFactory\**" />
+    <None Remove="MCD\ConsultaEspecialidadeFactories\**" />
+  </ItemGroup>
+
+</Project>

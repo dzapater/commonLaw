@@ -1,0 +1,13 @@
+ALTER SESSION SET "_ORACLE_SCRIPT"=true;
+
+CREATE USER SAJ_DSG identified by "agesune1" QUOTA UNLIMITED ON USERS;
+GRANT CREATE SESSION TO SAJ_DSG;
+grant all privileges to SAJ_DSG;
+
+CREATE USER SAJDSG identified by "agesune1" QUOTA UNLIMITED ON USERS;
+GRANT CREATE SESSION TO SAJDSG;
+grant all privileges to SAJDSG;
+
+CREATE USER SAJ identified by "agesune1" QUOTA UNLIMITED ON USERS;
+GRANT CREATE SESSION TO SAJ;
+grant all privileges to SAJ;

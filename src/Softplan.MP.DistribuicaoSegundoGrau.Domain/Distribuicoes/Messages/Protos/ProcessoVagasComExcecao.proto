@@ -1,0 +1,13 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Softplan.MP.DistribuicaoSegundoGrau.Domain.Distribuicoes.Messages.Protos";
+
+message ProcessoVagasComExcecao {
+    repeated VagasComExcecaoRemovida vagas_removidas = 1;
+    string motivo = 2;
+}
+
+message VagasComExcecaoRemovida {
+    int32 id_vaga = 1;
+    string descricao = 2;
+}

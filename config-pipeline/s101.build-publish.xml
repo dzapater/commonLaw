@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<headless version="1.0">
+    <operations>
+        <operation type="report-summary">
+            <argument name="detailed" value="true"/>  
+            <argument name="xml" value="true"/>  
+            <argument name="show-summary" value="true"/>  
+        </operation>
+        <operation type="publish">
+            <argument name="diagrams" value="true"/>
+            <argument name="overwrite" value="true"/>
+            <argument name="actions" value="true"/>
+        </operation>
+    </operations>
+    <arguments>
+    </arguments>
+</headless>

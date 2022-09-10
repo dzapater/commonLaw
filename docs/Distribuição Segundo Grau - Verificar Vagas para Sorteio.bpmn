@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" id="Definitions_10p5vvs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.5.0">
+  <bpmn:collaboration id="Collaboration_0dwxxed">
+    <bpmn:participant id="Participant_03gh2zt" name="Distribuição do Segundo Grau - Verificar Vagas para Sorteio" processRef="Process_1" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_0taskzf">
+      <bpmn:lane id="Lane_19vx6jb" name="Distribuição">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property />
+          </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:flowNodeRef>Event_0c7wmwd</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_079aecf</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0vvahj0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1ypqlv7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0vrne85</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_166wgru</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="Event_0c7wmwd">
+      <bpmn:outgoing>Flow_1cwbnkg</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Activity_079aecf" name="Remover Vagas Impedidas e Inativas">
+      <bpmn:incoming>Flow_1cwbnkg</bpmn:incoming>
+      <bpmn:outgoing>Flow_08wuyia</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0vvahj0" name="Verificar Critérios do Processo">
+      <bpmn:incoming>Flow_08wuyia</bpmn:incoming>
+      <bpmn:outgoing>Flow_1vz9vw6</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_1ypqlv7" name="Procurar Vagas">
+      <bpmn:incoming>Flow_1vz9vw6</bpmn:incoming>
+      <bpmn:outgoing>Flow_1vf6v3t</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0vrne85" name="Filtrar Vagas por Peso">
+      <bpmn:incoming>Flow_1vf6v3t</bpmn:incoming>
+      <bpmn:outgoing>Flow_186v2ul</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_166wgru" name="Vagas Existentes?">
+      <bpmn:incoming>Flow_186v2ul</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1cwbnkg" sourceRef="Event_0c7wmwd" targetRef="Activity_079aecf" />
+    <bpmn:sequenceFlow id="Flow_08wuyia" sourceRef="Activity_079aecf" targetRef="Activity_0vvahj0" />
+    <bpmn:sequenceFlow id="Flow_1vz9vw6" sourceRef="Activity_0vvahj0" targetRef="Activity_1ypqlv7" />
+    <bpmn:sequenceFlow id="Flow_1vf6v3t" sourceRef="Activity_1ypqlv7" targetRef="Activity_0vrne85" />
+    <bpmn:sequenceFlow id="Flow_186v2ul" sourceRef="Activity_0vrne85" targetRef="Event_166wgru" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0dwxxed">
+      <bpmndi:BPMNShape id="Participant_03gh2zt_di" bpmnElement="Participant_03gh2zt" isHorizontal="true" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="152" y="80" width="1068" height="420" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_19vx6jb_di" bpmnElement="Lane_19vx6jb" isHorizontal="true" bioc:stroke="rgb(30, 136, 229)" bioc:fill="rgb(187, 222, 251)">
+        <dc:Bounds x="182" y="80" width="1038" height="420" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1cwbnkg_di" bpmnElement="Flow_1cwbnkg">
+        <di:waypoint x="280" y="270" />
+        <di:waypoint x="370" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08wuyia_di" bpmnElement="Flow_08wuyia">
+        <di:waypoint x="470" y="270" />
+        <di:waypoint x="570" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vz9vw6_di" bpmnElement="Flow_1vz9vw6">
+        <di:waypoint x="670" y="270" />
+        <di:waypoint x="760" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vf6v3t_di" bpmnElement="Flow_1vf6v3t">
+        <di:waypoint x="860" y="270" />
+        <di:waypoint x="950" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_186v2ul_di" bpmnElement="Flow_186v2ul">
+        <di:waypoint x="1050" y="270" />
+        <di:waypoint x="1142" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_0c7wmwd_di" bpmnElement="Event_0c7wmwd">
+        <dc:Bounds x="244" y="252" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ohfxmh_di" bpmnElement="Activity_079aecf">
+        <dc:Bounds x="370" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_10fyplj_di" bpmnElement="Activity_0vvahj0">
+        <dc:Bounds x="570" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_10tycv1_di" bpmnElement="Activity_1ypqlv7">
+        <dc:Bounds x="760" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rnjnld_di" bpmnElement="Activity_0vrne85">
+        <dc:Bounds x="950" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_166wgru_di" bpmnElement="Event_166wgru">
+        <dc:Bounds x="1142" y="252" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1115" y="295" width="90" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

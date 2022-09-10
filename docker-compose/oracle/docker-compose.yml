@@ -1,0 +1,14 @@
+version: '3'
+
+volumes:
+  oracle-data:
+    driver: "local"
+
+services:
+  oracle:
+    image: docker-unj-repo.softplan.com.br/sajmp-docker-dev-local/oracle/database-enterprise:latest
+    volumes:
+      - ./initDb.sql:/volume/initDb.sql
+    ports:
+      - "1521:1521"
+      - "5500:5500"

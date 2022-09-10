@@ -1,0 +1,130 @@
+﻿DECLARE
+  pCount NUMBER;
+BEGIN
+  pCount := 0;
+  SELECT count(*) INTO pCount FROM SAJ_DSG."__MigrationsHistory" WHERE "MigrationId" = '20210712143230_CreateCompensacaoLog';
+  IF (pCount <> 1) THEN
+    EXECUTE IMMEDIATE '
+    BEGIN
+      EXECUTE IMMEDIATE ''ALTER TABLE SAJ_DSG.VAGA MODIFY TIPO_ORGAO_ID NULL'';
+    EXCEPTION
+      WHEN OTHERS THEN
+        IF SQLCODE <> -1451 AND SQLCODE <> -1442 THEN
+          RAISE;
+        END IF;
+    END;
+';
+  END IF;
+END;
+/
+DECLARE
+  pCount NUMBER;
+BEGIN
+  pCount := 0;
+  SELECT count(*) INTO pCount FROM SAJ_DSG."__MigrationsHistory" WHERE "MigrationId" = '20210712143230_CreateCompensacaoLog';
+  IF (pCount <> 1) THEN
+    EXECUTE IMMEDIATE '
+    BEGIN
+      EXECUTE IMMEDIATE ''ALTER TABLE SAJ_DSG.VAGA MODIFY ORGAO_ID NULL'';
+    EXCEPTION
+      WHEN OTHERS THEN
+        IF SQLCODE <> -1451 AND SQLCODE <> -1442 THEN
+          RAISE;
+        END IF;
+    END;
+';
+  END IF;
+END;
+/
+DECLARE
+  pCount NUMBER;
+BEGIN
+  pCount := 0;
+  SELECT count(*) INTO pCount FROM SAJ_DSG."__MigrationsHistory" WHERE "MigrationId" = '20210712143230_CreateCompensacaoLog';
+  IF (pCount <> 1) THEN
+    EXECUTE IMMEDIATE '
+    CREATE TABLE SAJ_DSG.COMPENSACAO_LOG ( 
+      LOG_ID NUMBER(10) NOT NULL,
+      VAGA_ID NUMBER(10) NOT NULL,
+      MOTIVO NVARCHAR2(2000) NULL,
+      METADATA_UUID RAW(16) NULL,
+      METADATA_ROW_VERSION BLOB NULL,
+      METADATA_DATA_INCLUSAO TIMESTAMP(7) WITH TIME ZONE NULL,
+      METADATA_DATA_ATUALIZACAO TIMESTAMP(7) WITH TIME ZONE NULL,
+      METADATA_USUARIO_INCLUSAO NCLOB NULL,
+      METADATA_USUARIO_ATUALIZACAO NCLOB NULL,
+      VALOR NUMBER(10) NOT NULL,
+      PRIMARY KEY (LOG_ID),
+      CONSTRAINT FK_N1751103338 FOREIGN KEY (VAGA_ID) REFERENCES SAJ_DSG.VAGA (ID)
+      ON DELETE CASCADE
+    )
+';
+  END IF;
+END;
+/
+DECLARE
+  pCount NUMBER;
+BEGIN
+  pCount := 0;
+  SELECT count(*) INTO pCount FROM SAJ_DSG."__MigrationsHistory" WHERE "MigrationId" = '20210712143230_CreateCompensacaoLog';
+  IF (pCount <> 1) THEN
+    EXECUTE IMMEDIATE '
+    CREATE SEQUENCE SAJ_DSG.COMPENSACAO_LOG_SEQ
+';
+  END IF;
+END;
+/
+DECLARE
+  pCount NUMBER;
+BEGIN
+  pCount := 0;
+  SELECT count(*) INTO pCount FROM SAJ_DSG."__MigrationsHistory" WHERE "MigrationId" = '20210712143230_CreateCompensacaoLog';
+  IF (pCount <> 1) THEN
+    EXECUTE IMMEDIATE '
+    CREATE OR REPLACE TRIGGER SAJ_DSG.COMPENSACAO_LOG_INS_TRG
+      BEFORE INSERT ON SAJ_DSG.COMPENSACAO_LOG
+      FOR EACH ROW
+    BEGIN
+      SELECT SAJ_DSG.COMPENSACAO_LOG_SEQ.NEXTVAL INTO :NEW.LOG_ID FROM DUAL;
+    END;
+';
+  END IF;
+END;
+/
+DECLARE
+  pCount NUMBER;
+BEGIN
+  pCount := 0;
+  SELECT count(*) INTO pCount FROM SAJ_DSG."__MigrationsHistory" WHERE "MigrationId" = '20210712143230_CreateCompensacaoLog';
+  IF (pCount <> 1) THEN
+    EXECUTE IMMEDIATE '
+    CREATE INDEX IX_COMPENSACAO_LOG_VAGA_ID ON SAJ_DSG.COMPENSACAO_LOG (VAGA_ID)
+';
+  END IF;
+END;
+/
+DECLARE
+  pCount NUMBER;
+BEGIN
+  pCount := 0;
+  SELECT count(*) INTO pCount FROM SAJ_DSG."__MigrationsHistory" WHERE "MigrationId" = '20210712143230_CreateCompensacaoLog';
+  IF (pCount <> 1) THEN
+    EXECUTE IMMEDIATE '
+    CREATE UNIQUE INDEX IX_821330766 ON SAJ_DSG.COMPENSACAO_LOG (METADATA_UUID)
+';
+  END IF;
+END;
+/
+DECLARE
+  pCount NUMBER;
+BEGIN
+  pCount := 0;
+  SELECT count(*) INTO pCount FROM SAJ_DSG."__MigrationsHistory" WHERE "MigrationId" = '20210712143230_CreateCompensacaoLog';
+  IF (pCount <> 1) THEN
+    EXECUTE IMMEDIATE '
+    INSERT INTO SAJ_DSG."__MigrationsHistory" ("MigrationId", "ProductVersion")
+    VALUES (''20210712143230_CreateCompensacaoLog'', ''3.1.11'')
+';
+  END IF;
+END;
+/

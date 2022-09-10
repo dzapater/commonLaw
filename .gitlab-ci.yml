@@ -1,0 +1,154 @@
+include:
+  # Arch Templates
+  - https://git-unj.softplan.com.br/enterprise-devops/ci-templates/raw/master/templates/.und-udb-creation.yml
+  - https://git-unj.softplan.com.br/enterprise-devops/ci-templates/raw/master/templates/.micro-arch-analysis.yml
+  - https://git-unj.softplan.com.br/enterprise-devops/ci-templates/raw/master/templates/.macro-arch-analysis.yml
+  # Deploy templates
+  - https://git-unj.softplan.com.br/enterprise-devops/ci-templates/raw/master/templates/.k8s-deploy-mp.yaml
+  # Dotnet Core Templates
+  - https://git-unj.softplan.com.br/enterprise-devops/ci-templates/raw/master/templates/dotnetcore/.sonar-analysis.yml
+  - https://git-unj.softplan.com.br/enterprise-devops/ci-templates/raw/master/templates/dotnetcore/.compilation.yml
+  - https://git-unj.softplan.com.br/enterprise-devops/ci-templates/raw/master/templates/dotnetcore/.test.yml
+  - https://git-unj.softplan.com.br/enterprise-devops/ci-templates/raw/master/templates/dotnetcore/.docker-publishing.yml
+  - https://git-unj.softplan.com.br/enterprise-devops/ci-templates/raw/master/templates/dotnetcore/.common.gitlab-ci.yml
+  # Security Templates
+  - https://git-unj.softplan.com.br/enterprise-devops/ci-templates/raw/master/templates/security/container-scan/.container-scanning.yml
+  - https://git-unj.softplan.com.br/enterprise-devops/ci-templates/raw/master/templates/security/dependency-scan/.dependency-scanning.yml
+  - https://git-unj.softplan.com.br/enterprise-devops/ci-templates/raw/master/templates/security/dast-scan/.dast-scanning.yml
+
+variables:
+  RELEASE_NAME: "mp-distribuicao-segundo-grau-api"
+  ASSEMBLY_NAME: Softplan.MP.DistribuicaoSegundoGrau.WebApi
+  APPLICATION_LANGUAGE: "c#"
+  DOTNET_VERSION: "3.1"
+  OS: "alpine"
+  OS_RUNTIME: "alpine"
+  OS_DOCKER_BUILD: "alpine"
+  TARGET_PROJECT_PATH: src/Softplan.MP.DistribuicaoSegundoGrau.WebApi
+
+stages:
+  - pre-validation
+  - compilation
+  - tests  
+  - dependency-scan
+  - preparation
+  - kaloi
+  - publishing  
+  - container-scan
+  - deploy-k8s
+  - dast-scan
+
+und-udb-creation:
+  extends: .template:und-udb-creation
+
+micro-arch-analysis:
+  extends: .template:micro-arch-analysis
+
+macro-arch-analysis:
+  extends: .template:macro-arch-analysis-generic
+
+macro-arch-analysis-publishing:
+  extends: .template:macro-arch-analysis-publishing-generic
+
+macro-arch-analysis-publishing-failure-generic:
+  extends: .template:macro-arch-analysis-publishing-failure-generic
+
+macro-arch-analysis-publishing-schedule:
+  extends: .template:macro-arch-analysis-publishing-schedule-generic
+
+csharp-compilation:
+  extends: .template:netcore:compilation
+  only:
+    - branches
+    - tags
+  variables:
+    FAIXA_SELECIONADA: azul
+
+unit-testing:
+  extends: .template:netcore:test
+  only:
+    - branches
+    - tags
+
+postgresql-integration-testing:
+  extends: .template:netcore:test
+  stage: tests
+  variables:
+    POSTGRES_DB: "postgres"
+    POSTGRES_USER: "user"
+    POSTGRES_PASSWORD: "pass"
+    DATABASE_PROVIDER: "PostgreSql"
+    CONNECTION_STRING: "Server=database;Username=user;Password=pass;Database=postgres"
+    SAJDSG_CONNECTION_STRING: "Server=database;Username=user;Password=pass;Database=postgres"
+  services:
+    - name: docker-unj-repo.softplan.com.br/postgres:12-alpine
+      alias: database
+  when: manual
+  
+oracle-integration-testing:
+  image: docker-unj-repo.softplan.com.br/unj/dotnet-sdk:3.1-bionic
+  extends: .template:netcore:test
+  stage: tests
+  variables:
+    ORACLE_DB: "Oracle"
+    ORACLE_USER: "sys"
+    ORACLE_PASSWORD: "Oradoc_db1"
+    DATABASE_PROVIDER: "Oracle"
+    CONNECTION_STRING: "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=database-oracle)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=ORCLCDB.localdomain)));User Id=sys;Password=Oradoc_db1;Mode=SYSDBA"
+    SAJDSG_CONNECTION_STRING: "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=database-oracle)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=ORCLCDB.localdomain)));User Id=sys;Password=Oradoc_db1;Mode=SYSDBA"
+  services:
+    - name: docker-unj-repo.softplan.com.br/sajmp-docker-dev-local/oracle/database-enterprise:latest
+      alias: database-oracle
+  before_script:
+    - wget https://download.oracle.com/otn_software/linux/instantclient/211000/instantclient-basic-linux.x64-21.1.0.0.0.zip
+    - wget https://download.oracle.com/otn_software/linux/instantclient/211000/instantclient-sqlplus-linux.x64-21.1.0.0.0.zip
+    - apt-get update
+    - apt-get install unzip
+    - apt-get install libaio1
+    - unzip instantclient-basic-linux.x64-21.1.0.0.0.zip
+    - unzip instantclient-sqlplus-linux.x64-21.1.0.0.0.zip
+    - rm instantclient-sqlplus-linux.x64-21.1.0.0.0.zip
+    - rm instantclient-basic-linux.x64-21.1.0.0.0.zip
+    - export LD_LIBRARY_PATH=`pwd`/instantclient_21_1
+    - export PATH=`pwd`/instantclient_21_1:$PATH
+    - sqlplus sys/Oradoc_db1@database-oracle/ORCLCDB.localdomain as SYSDBA @./docker-compose/oracle/initDb.sql
+  tags:
+    - dotnet-mp
+  when: manual
+
+dependency-scanning:
+  extends: .template:dependency-scan-dotnet
+  allow_failure: true
+  only:
+    - tags
+  variables:
+    FAIXA_SELECIONADA: laranja
+
+sonar-analysis-preview:
+  extends: .template:netcore:sonar-analysis-preview
+
+sonar-analysis:
+  extends: .template:netcore:sonar-analysis
+  only:
+    - master
+
+docker-publishing:
+  extends: .template:netcore:docker-publishing
+
+container-scanning:
+  extends: .template:container-scan
+  allow_failure: true
+  only:
+    - tags
+  variables:
+    FAIXA_SELECIONADA: laranja
+
+manual:docker-publishing:
+  extends: .template:netcore:manual:docker-publishing
+
+manual:dast-scanning:
+  extends: .template:dast-scan
+  allow_failure: true
+  variables:
+    FAIXA_SELECIONADA: laranja
+    DAST_WEBSITE: http://mp-master.saj6.softplan.com.br/apollo

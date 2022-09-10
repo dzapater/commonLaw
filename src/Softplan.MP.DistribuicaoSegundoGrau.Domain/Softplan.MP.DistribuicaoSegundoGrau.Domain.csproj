@@ -1,0 +1,83 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>        
+        <PackageReference Include="Google.Protobuf" Version="3.16.0" />        
+<!--        <PackageReference Include="Grpc.Tools" Version="2.37.1" Condition="" />-->
+        <PackageReference Include="Softplan.Common.MessageBus.Abstractions" Version="$(SoftplanCommonsVersion)" />
+        <PackageReference Include="Softplan.MP.Utils.SharedKernel" Version="21.3.4" />            
+    </ItemGroup>
+    
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessageAttribute">
+            <_Parameter1>csharpsquid</_Parameter1>
+            <_Parameter2>S4056</_Parameter2>
+        </AssemblyAttribute>
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessageAttribute">
+            <_Parameter1>csharpsquid</_Parameter1>
+            <_Parameter2>S4058</_Parameter2>
+        </AssemblyAttribute>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <EmbeddedResource Update="DomainResources.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>DomainResources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Remove="Cadastros\VinculoMembroVagas\Specifications\**" />
+      <EmbeddedResource Remove="Cadastros\Specifications\**" />
+      <EmbeddedResource Remove="Cadastros\RegrasDistribuicao\Specifications\**" />
+      <EmbeddedResource Remove="SAJ\**" />
+      <EmbeddedResource Remove="Parametro\**" />
+      <EmbeddedResource Remove="Distribuicoes\Messages\Protos\Distribuicoes\Messages\Factories\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="DomainResources.Designer.cs">
+        <AutoGen>True</AutoGen>
+        <DependentUpon>DomainResources.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+      </Compile>
+      <Compile Remove="Cadastros\RegrasDistribuicao\Especialidade.cs" />
+      <Compile Remove="Cadastros\VinculoMembroVagas\Specifications\**" />
+      <Compile Remove="Cadastros\Specifications\**" />
+      <Compile Remove="Cadastros\RegrasDistribuicao\Specifications\**" />
+      <Compile Remove="Cadastros\RegrasDistribuicao\Extensions\RegraJaCadastradaExtensionFilterBuilder.cs" />
+      <Compile Remove="Cadastros\Vagas\VagaDistribuicao.cs" />
+      <Compile Remove="SAJ\**" />
+      <Compile Remove="Parametro.cs" />
+      <Compile Remove="Parametro\**" />
+      <Compile Remove="Distribuicoes\Messages\Protos\Distribuicoes\Messages\Factories\MessageFactory.cs" />
+      <Compile Remove="Distribuicoes\Messages\Protos\Distribuicoes\Messages\Factories\**" />
+      <Compile Remove="ValueObjects\VagaEscopoRegraDistribuicao.cs" />
+      <Compile Remove="ValueObjects\VinculoVagaRegraMembro.cs" />
+      <Compile Remove="Cadastros\VinculoVagasRegrasDistribuicao\VinculoVagaRegraAtivo.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Protobuf Include="**/*.proto" OutputDir="%(RelativeDir)" CompileOutputs="false" GrpcServices="Server" />
+      <Protobuf Remove="Cadastros\VinculoMembroVagas\Specifications\**" />
+      <Protobuf Remove="Cadastros\Specifications\**" />
+      <Protobuf Remove="Cadastros\RegrasDistribuicao\Specifications\**" />
+      <Protobuf Remove="SAJ\**" />
+      <Protobuf Remove="Parametro\**" />
+      <Protobuf Remove="Distribuicoes\Messages\Protos\Distribuicoes\Messages\Factories\**" />     
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Cadastros\VinculoMembroVagas\Specifications\**" />
+      <None Remove="Cadastros\Specifications\**" />
+      <None Remove="Cadastros\RegrasDistribuicao\Specifications\**" />
+      <None Remove="SAJ\**" />
+      <None Remove="Parametro\**" />
+      <None Remove="Distribuicoes\Messages\Protos\Distribuicoes\Messages\Factories\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Protobuf Remove="Distribuicoes\Messages\Protos\ProcessoVagasComExcecao.proto" />
+      <Protobuf Remove="Distribuicoes\Messages\Protos\ProcessoVagasRemovidasDistribuicaoMesmaVaga.proto" />
+    </ItemGroup>
+</Project>

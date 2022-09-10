@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Softplan.MyProject.WebApi": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"        
+      },
+      "applicationUrl": "http://localhost:52794",
+      "launchUrl": "api-docs/graphql"
+    }
+  }
+}

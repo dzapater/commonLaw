@@ -1,0 +1,3 @@
+{
+    "regexIgnoreFiles": ".+(Repository.cs|Map.cs|Context.cs|Profile.cs|Migrations|Model.cs|Resources.Designer.cs)"
+}

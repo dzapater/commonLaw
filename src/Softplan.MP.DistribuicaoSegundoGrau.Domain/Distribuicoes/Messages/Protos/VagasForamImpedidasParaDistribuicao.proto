@@ -1,0 +1,13 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Softplan.MP.DistribuicaoSegundoGrau.Domain.Distribuicoes.Messages.Protos";
+
+message VagasForamImpedidasParaDistribuicao {
+    repeated VagaImpedidaParaDistribuicao vagas_impedidas = 1;
+}
+
+message VagaImpedidaParaDistribuicao {
+    int32 id_vaga = 1;
+    string descricao = 2;
+    string motivo = 3;
+}

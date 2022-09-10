@@ -1,0 +1,11 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Softplan.MP.DistribuicaoSegundoGrau.Domain.Distribuicoes.Messages.Protos";
+
+message RemessaProcessoFoiAgendada {
+    string id_processo = 1;
+    int32 codigo_foro_destino = 2;
+    int32 codigo_tipo_local_destino = 3;
+    int32 codigo_local_destino = 4;
+    int64 id_lote_distribuicao = 5;
+}

@@ -1,0 +1,12 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "Softplan.MP.DistribuicaoSegundoGrau.Domain.Distribuicoes.Messages.Protos";
+
+message VagaFoiSelecionadaParaDistribuicao {
+    int32 id_vaga = 1;
+    google.protobuf.Int32Value id_regra_distribuicao = 2;
+    string id_processo = 3;
+    int32 volumes = 4;
+}

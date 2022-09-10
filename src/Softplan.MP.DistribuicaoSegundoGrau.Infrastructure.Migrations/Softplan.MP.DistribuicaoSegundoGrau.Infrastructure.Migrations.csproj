@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <SonarQubeExclude>true</SonarQubeExclude>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.11">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.11" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Softplan.MP.DistribuicaoSegundoGrau.Infrastructure\Softplan.MP.DistribuicaoSegundoGrau.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="OracleSajMigrations" />
+        <Folder Include="PostgreSqlSajMigrations" />
+        <Folder Include="SajDsgOracleMigrations\" />
+        <Folder Include="SajDsgPostgreSqlMigrations\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="OracleMigrations\20210721162654_UpdateVagaMotivo.cs" />
+      <Compile Remove="OracleMigrations\20210721162654_UpdateVagaMotivo.Designer.cs" />
+      <Compile Remove="PostgreSqlSajMigrations\20210520130537_CreateEspecialidade.cs" />
+      <Compile Remove="PostgreSqlSajMigrations\20210520130537_CreateEspecialidade.Designer.cs" />
+      <Compile Remove="PostgreSqlMigrations\20210630190136_IncluiMotivoVaga.cs" />
+      <Compile Remove="PostgreSqlMigrations\20210630190136_IncluiMotivoVaga.Designer.cs" />
+      <Compile Remove="OracleMigrations\20210701033405_IncluiMotivoVaga.cs" />
+      <Compile Remove="OracleMigrations\20210701033405_IncluiMotivoVaga.Designer.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="PostgreSqlMigrations\20210630190136_IncluiMotivoVaga.sql" />
+      <None Remove="OracleMigrations\20210701033405_IncluiMotivoVaga.sql" />
+      <None Remove="PostgreSqlMigrations\CreateRegraDistribuicaoEspecialidade.sql" />
+      <None Remove="PostgreSqlMigrations\20210720001849_CreateRegraDistribuicaoEspecialidade.sql" />
+      <None Remove="PostgreSqlMigrations\20210720021310_UpdateRegraDistribuicao.sql" />
+      <None Remove="OracleMigrations\20211109144553_UpdateVagaRegraDistribuicao.sql" />
+      <None Remove="OracleMigrations\20211109205918_UpdateVaga_AddCompensacaoVolume_DistribuicaoVolume.sql" />
+      <None Remove="OracleMigrations\20211124175140_UpdateAnaliseProcesso.sql" />
+      <None Remove="OracleMigrations\20211206211203_SetDefaultValuePropriedadesDistribuicaoVagaRegraDistribuicao.sql" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<headless version="1.0">
+    <operations>
+        <operation type="check-architecture">
+            <argument name="onlyNew" value="true"/>
+            <argument name="check-unassociated" value="true"/>
+            <argument name="fail-on-violations" value="true"/>
+        </operation>
+        <operation type="check-xs">
+            <argument name="fail-on-offender" value="true"/>
+        </operation>
+        <operation type="report-summary">
+            <argument name="detailed" value="true"/>  
+            <argument name="xml" value="true"/>  
+            <argument name="show-summary" value="true"/>  
+        </operation>
+    </operations>
+    <arguments>
+    </arguments>
+</headless>

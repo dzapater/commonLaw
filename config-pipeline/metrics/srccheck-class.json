@@ -1,0 +1,5 @@
+{
+  "CountDeclMethodNonStub": 80,
+  "MaxInheritanceTree": 6,
+  "CountClassCoupled": 115
+}

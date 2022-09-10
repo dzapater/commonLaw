@@ -1,0 +1,20 @@
+﻿version: '3'
+
+services:
+  mp-distribuicao-segundo-grau-api:
+    image: docker-unj-repo.softplan.com.br/unj/mp-distribuicao-segundo-grau-api:master
+    ports:
+      - "5001:80"
+    environment:
+      - "DATABASE_PROVIDER=Oracle"
+      - "CONNECTION_STRING=Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=172.23.70.30)(PORT=1521))(CONNECT_DATA=(SID=SIGTINT)));User Id=SAJ;Password=agesune1"
+      - "DEVART_ORACLE_LICENSE=NdV9nur7ypG+rgqM8gwcHgqer2k1CSiaHdlGO4dlI6VwaBOF2DyzkLqs37/2VqfUIVEBEqLb8Tk94pEWm3g5/TarbXqZiYFH7J7WcFfnr1hODQAZsce9pUWDLUcXUCf1FF2/nQGdo2AujlyUdQtmNDZgSngV5ZPJfEeAYNPAm3ptD1a22ztRjQDzG68uBAquBNHeSeFIJt1e2eITY+10RuVV4DYV04558tHVSFapJUq2zGip6obgSSIrNrUTh21V8Zo0rOZATeWsoeRES4TUJWSwOo7vIavxasHn8FJW1LtG/oAj2iFZbBFakoXN5yqRYXsS9+jquTF6e+hHX6IOuQHzBkb3p1zKSOeK8E+2AVhwhEjVdTDlFxRb+GBbnDD/"
+      - "BASE_PATH=/mp-distribuicao-segundo-grau-api"
+      - "USER_PERSONIFICATION_KEY=083BC23745A44536B53D4C97146A9610"
+      - "AUTHENTICATION_TYPES=OpenId"
+      - "OPENID_JWT_ISSUER=http://identity-mp-master.saj6.softplan.com.br/auth/realms/SAJ6"
+      - "ENABLE_LOAD_DATETIME_DB=false"
+      - "AUDIT_PERSISTENCE_METHOD=None"
+      - "MESSAGEBUS_PROVIDER=InMemory"
+      - "JOB_SCHEDULER_FACTORY_PREFIX=DSG"
+    restart: always

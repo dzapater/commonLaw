@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Interfaces\MCD\**" />
+      <Compile Remove="Interfaces\**" />
+      <Compile Remove="Implementations\**" />
+      <Compile Remove="Class1.cs" />
+      <Compile Remove="Messages\AreaAtuacaoResponseMessage.cs" />
+      <Compile Remove="MCD\IEspecialidadeGatewayService.cs" />
+      <Compile Remove="MCD\EspecialidadeGatewayService.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Interfaces\MCD\**" />
+      <EmbeddedResource Remove="Interfaces\**" />
+      <EmbeddedResource Remove="Implementations\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Interfaces\MCD\**" />
+      <None Remove="Interfaces\**" />
+      <None Remove="Implementations\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Softplan.Common.Core" Version="$(SoftplanCommonsVersion)" />
+      <PackageReference Include="Softplan.Common.Graph.Client" Version="$(SoftplanCommonsVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Softplan.MP.DistribuicaoSegundoGrau.Domain\Softplan.MP.DistribuicaoSegundoGrau.Domain.csproj" />
+      <ProjectReference Include="..\Softplan.MP.DistribuicaoSegundoGrau.Infrastructure.IoC\Softplan.MP.DistribuicaoSegundoGrau.Infrastructure.IoC.csproj" />
+    </ItemGroup>
+
+</Project>

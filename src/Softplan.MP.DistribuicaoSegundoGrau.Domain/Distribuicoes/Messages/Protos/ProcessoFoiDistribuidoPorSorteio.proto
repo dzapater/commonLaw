@@ -1,0 +1,11 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "Softplan.MP.DistribuicaoSegundoGrau.Domain.Distribuicoes.Messages.Protos";
+
+message ProcessoFoiDistribuidoPorSorteio {
+    string id_processo = 1;
+    string usuario = 2;
+    google.protobuf.Timestamp data_ocorrencia = 3;
+}
